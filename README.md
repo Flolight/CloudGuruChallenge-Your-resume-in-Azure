@@ -9,7 +9,7 @@ The idea is to build a resume and host it using Azure services.
 ## The steps
 
 * [X] Create a GitHub repository
-* [ ] Create the website (HTML, CSS...)
+* [X] Create the website (HTML, CSS...)
 * [ ] Add a visitor counter on the website
 * [ ] Deploy the website to Azure Blob storage
 * [ ] Set up GitHub actions
