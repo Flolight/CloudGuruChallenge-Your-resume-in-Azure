@@ -25,6 +25,17 @@
       "connectionStringSetting": "CosmosDbConnectionString",
       "partitionKey": "1",
       "id": "1"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "outputDoc",
+      "databaseName": "flo-resume-db",
+      "collectionName": "configuration",
+      "createIfNotExists": "true",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "1",
+      "id": "1"
     }
   ]
 }
