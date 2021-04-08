@@ -20,10 +20,11 @@
       "type": "cosmosDB",
       "direction": "in",
       "name": "inputDocument",
-      "databaseName": "resume-db",
-      "collectionName": "Items",
+      "databaseName": "flo-resume-db",
+      "collectionName": "configuration",
       "connectionStringSetting": "CosmosDbConnectionString",
-      "id": "606914944c824c1ea075a31f"
+      "partitionKey": "1",
+      "id": "1"
     }
   ]
 }
