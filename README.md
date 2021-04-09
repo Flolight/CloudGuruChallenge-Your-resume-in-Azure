@@ -13,8 +13,9 @@ The idea is to build a resume and host it using Azure services.
 * [ ] Add a visitor counter on the website
   * [X] Create CosmoDB database
   * [ ] Create Azure function to get number of views
-* [ ] Deploy the website to Azure Blob storage
-* [ ] Set up GitHub actions
+* [X] Deploy the website to Azure Static App
+* [X] Enable HTTPS and custom domain support
+* [X] Set up GitHub actions
 * [ ] Write a blog post to describe the process
 
 ## My journey
@@ -22,6 +23,13 @@ The idea is to build a resume and host it using Azure services.
 I already worked on the Cloud Resume challenge before. The goal was to host my resume on AWS.
 
 I have a decent knowledge of AWS and passed the AZ-900 but I'm not working on a daily basis with Azure. This challenge is a way to get some experience with it.
+
+### Static hosting
+
+* Use Azure Static Apps
+* Configure Custom domain
+  * Add to your DNS entries a CNAME pointing to the Static App url
+  * Verify it (Custom domains > Add+)
 
 ### Azure function
 
