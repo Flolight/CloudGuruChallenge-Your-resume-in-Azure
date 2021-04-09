@@ -39,4 +39,8 @@ I have a decent knowledge of AWS and passed the AZ-900 but I'm not working on a 
 * Create CosmosDB account from portal (serverless mode)
 * Create a Cosmos container
 * Create a document with a counter property
+
+* Add CORS for the static website to be able to call the Azure function
+  
+> don't forget to check the Enable Access-Control-Allow-Credentials option
   

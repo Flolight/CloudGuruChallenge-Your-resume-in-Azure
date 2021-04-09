@@ -10,7 +10,7 @@ const getVisitCount = () => {
     fetch(apiGateway, {
         node: 'cors',
     }).then(response => {
-        return response.json
+        return response.json()
     }).then(res => {
         const count = res;
         document.getElementById('counter').innerText = count;
