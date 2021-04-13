@@ -2,8 +2,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getVisitCount();
 });
 
-const apiGateway = 'https://getresumeuserscounter.azurewebsites.net/api/getresumeuserscounter'
-
+const apiGateway = '/api/getcounter'
 const getVisitCount = () => {
     let count = 0;
 
