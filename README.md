@@ -10,13 +10,25 @@ The idea is to build a resume and host it using Azure services.
 
 * [X] Create a GitHub repository
 * [X] Create the website (HTML, CSS...)
-* [ ] Add a visitor counter on the website
+* [X] Add a visitor counter on the website
   * [X] Create CosmoDB database
-  * [ ] Create Azure function to get number of views
-* [X] Deploy the website to Azure Static App
+  * [X] Create Azure function to get number of views
+* [X] Deploy the website to Azure Static Web App
 * [X] Enable HTTPS and custom domain support
 * [X] Set up GitHub actions
+* [ ] Add tests to the counter function
+
+Additional steps:
+
+* [ ] Script the application with ARM template and Azure CLI
+
+Last step:
+
 * [ ] Write a blog post to describe the process
+  * [ ] Azure Blob storage
+  * [ ] HTTPS
+  * [ ] Custom domain
+  * [ ] Function
 
 ## My journey
 
