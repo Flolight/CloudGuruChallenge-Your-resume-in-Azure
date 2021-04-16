@@ -2,9 +2,9 @@ name: Blob storage website CI
 
 on:
     push:
-        branches: [ master ]
+        branches: [ main ]
     pull_request:
-        branches: [ master ]
+        branches: [ main ]
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name "staticwebsite" --name "floresume.azureedge.net" --resource-group "flo-resume"
+           az cdn endpoint purge --content-paths  "/*" --profile-name "staticwebsite" --name "floresume" --resource-group "flo-resume"
     # Azure logout 
     - name: logout
       run: |
