@@ -72,11 +72,28 @@ az storage blob upload-batch -s /Users/flo/repos/CloudGuruChallenge-Your-resume-
 
 ### Map a custom domain
 
-https://docs.microsoft.com/en-us/azure/storage/blobs/storage-custom-domain-name?tabs=azure-portal#enable-https
+[Tutorial](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-custom-domain-name?tabs=azure-portal#enable-https)
 
 Use cdnverify to avoid downtime when migrating
 
 Custom domain https with CDN managed certificates
+
+### Github action
+
+* Generate deployment credentials and copy the json for later use
+
+```sh
+az ad sp create-for-rbac --name {myStaticSite} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth
+```
+az ad sp create-for-rbac --name floresume --role contributor --scopes /subscriptions/b2348720-5caf-4463-899f-1891ed1130c4/resourceGroups/flo-resume --sdk-auth
+
+* Add a secret to Github repository with the json
+
+* Create a new workflow under .github/workflows/
+
+(link to be added to the workflow file...)
+
+> Note that if you are using Azure Static Web Apps, the workflow file is already generated.
 
 ### Scripting
 
