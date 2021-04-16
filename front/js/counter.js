@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getVisitCount();
 });
 
-const apiGateway = '/api/getcounter'
+const apiGateway = 'https://floresumeapi.azurewebsites.net/api/GetCounter?'
 const getVisitCount = () => {
     let count = 0;
 

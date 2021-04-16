@@ -55,4 +55,86 @@ I have a decent knowledge of AWS and passed the AZ-900 but I'm not working on a 
 * Add CORS for the static website to be able to call the Azure function
   
 > don't forget to check the Enable Access-Control-Allow-Credentials option
-  
+
+### Host static website
+
+[Tutorial](https://docs.microsoft.com/fr-fr/azure/storage/blobs/storage-blob-static-website)
+
+* create a storage account and run the following:
+* 
+az storage blob service-properties update --account-name floresume2021 --static-website --404-document error.html --index-document index.html
+
+az storage blob upload-batch -s /Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/front -d '$web' --account-name floresume2021
+
+### Azure CDN
+
+[Tutorial](https://docs.microsoft.com/fr-fr/azure/storage/blobs/static-website-content-delivery-network)
+
+### Map a custom domain
+
+[Tutorial](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-custom-domain-name?tabs=azure-portal#enable-https)
+
+Use cdnverify to avoid downtime when migrating
+
+Custom domain https with CDN managed certificates
+
+### Github action
+
+* Generate deployment credentials and copy the json for later use
+
+```sh
+az ad sp create-for-rbac --name {myStaticSite} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth
+```
+az ad sp create-for-rbac --name floresume --role contributor --scopes /subscriptions/b2348720-5caf-4463-899f-1891ed1130c4/resourceGroups/flo-resume --sdk-auth
+
+* Add a secret to Github repository with the json
+
+* Create a new workflow under .github/workflows/
+
+(link to be added to the workflow file...)
+
+> Note that if you are using Azure Static Web Apps, the workflow file is already generated.
+
+### Scripting
+
+[Tutorial](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template?tabs=azure-cli)
+
+[ARM template reference](https://docs.microsoft.com/en-us/azure/templates/)
+
+* [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+
+* Use az login to set up credentials
+
+* Create a template.json and set up the blank template
+
+* Create resource group for the template
+
+```sh
+az group create \
+--name resumeGroup \
+--location "East US 2"
+```
+
+```sh
+templateFile="{path to your template file}"
+az deployment group create \
+  --name blanktemplate \
+  --resource-group resumeGroup \
+  --template-file $templateFile
+```
+
+* Add storage resource
+
+templateFile="/Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/templates/azurestoragedeploy.json"
+az deployment group create \
+  --name addstorage \
+  --resource-group flo-resume \
+  --template-file $templateFile \
+  --parameters storageName=resumeflo2021
+
+templateFile="/Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/templates/azurefunctiondeploy.json"
+az deployment group create \
+  --name addfunction \
+  --resource-group flo-resume \
+  --template-file $templateFile \
+  --parameters storageName=resumeflo2021
