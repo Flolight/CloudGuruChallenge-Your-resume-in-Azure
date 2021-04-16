@@ -1,0 +1,161 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_FloResumeAPI_name": {
+            "defaultValue": "FloResumeAPI",
+            "type": "String"
+        },
+        "serverfarms_EastUS2LinuxDynamicPlan_externalid": {
+            "defaultValue": "/subscriptions/b2348720-5caf-4463-899f-1891ed1130c4/resourceGroups/floresumeapi/providers/Microsoft.Web/serverfarms/EastUS2LinuxDynamicPlan",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('sites_FloResumeAPI_name')]",
+            "location": "East US 2",
+            "kind": "functionapp,linux",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "floresumeapi.azurewebsites.net",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "floresumeapi.scm.azurewebsites.net",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[parameters('serverfarms_EastUS2LinuxDynamicPlan_externalid')]",
+                "reserved": true,
+                "isXenon": false,
+                "hyperV": false,
+                "siteConfig": {},
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": false,
+                "redundancyMode": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_FloResumeAPI_name'), '/web')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_FloResumeAPI_name'))]"
+            ],
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "linuxFxVersion": "Python|3.8",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$FloResumeAPI",
+                "azureStorageAccounts": {},
+                "scmType": "None",
+                "use32BitWorkerProcess": false,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false
+                    }
+                ],
+                "loadBalancing": "LeastRequests",
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "cors": {
+                    "allowedOrigins": [
+                        "https://functions.azure.com",
+                        "https://functions-staging.azure.com",
+                        "https://functions-next.azure.com"
+                    ],
+                    "supportCredentials": false
+                },
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictionsUseMain": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/functions",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_FloResumeAPI_name'), '/GetCounter')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_FloResumeAPI_name'))]"
+            ],
+            "properties": {
+                "script_root_path_href": "https://floresumeapi.azurewebsites.net/admin/vfs/home/site/wwwroot/GetCounter/",
+                "script_href": "https://floresumeapi.azurewebsites.net/admin/vfs/home/site/wwwroot/GetCounter/__init__.py",
+                "config_href": "https://floresumeapi.azurewebsites.net/admin/vfs/home/site/wwwroot/GetCounter/function.json",
+                "href": "https://floresumeapi.azurewebsites.net/admin/functions/GetCounter",
+                "config": {}
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_FloResumeAPI_name'), '/', parameters('sites_FloResumeAPI_name'), '.azurewebsites.net')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_FloResumeAPI_name'))]"
+            ],
+            "properties": {
+                "siteName": "FloResumeAPI",
+                "hostNameType": "Verified"
+            }
+        }
+    ]
+}
