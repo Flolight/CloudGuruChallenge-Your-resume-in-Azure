@@ -20,15 +20,18 @@ The idea is to build a resume and host it using Azure services.
 
 Additional steps:
 
-* [ ] Script the application with ARM template and Azure CLI
-
+* [ ] Migrate out of Azure static web apps
+  * [x] Azure Blob storage
+  * [x] HTTPS
+  * [x] Custom domain
+  * [x] Function
+  * [ ] CI/CD Github Actions
+    * [ ] Static website
+    * [ ] Counter Function
 Last step:
 
 * [ ] Write a blog post to describe the process
-  * [ ] Azure Blob storage
-  * [ ] HTTPS
-  * [ ] Custom domain
-  * [ ] Function
+
 
 ## My journey
 
