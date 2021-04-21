@@ -27,7 +27,7 @@ Additional steps:
   * [x] Function
   * [ ] CI/CD Github Actions
     * [X] Static website
-    * [ ] Counter Function (Python)
+    * [X] Counter Function (Python)
 Last step:
 
 * [ ] Write a blog post to describe the process
