@@ -26,12 +26,11 @@ Additional steps:
   * [x] Custom domain
   * [x] Function
   * [ ] CI/CD Github Actions
-    * [ ] Static website
-    * [ ] Counter Function
+    * [X] Static website
+    * [ ] Counter Function (Python)
 Last step:
 
 * [ ] Write a blog post to describe the process
-
 
 ## My journey
 
