@@ -58,6 +58,8 @@ I have a decent knowledge of AWS and passed the AZ-900 but I'm not working on a 
   
 > don't forget to check the Enable Access-Control-Allow-Credentials option
 
+>to set up the python env: `python3 -m venv .env` & `source .venv/bin/activate`
+
 ### Host static website
 
 [Tutorial](https://docs.microsoft.com/fr-fr/azure/storage/blobs/storage-blob-static-website)

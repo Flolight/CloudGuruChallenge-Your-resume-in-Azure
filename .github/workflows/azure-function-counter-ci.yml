@@ -28,6 +28,9 @@ jobs:
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
           popd
       
+      - name: GitHub Action for pytest
+        uses: cclauss/GitHub-Action-for-pytest@0.5.0
+      
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
