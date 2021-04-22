@@ -16,11 +16,11 @@ The idea is to build a resume and host it using Azure services.
 * [X] Deploy the website to Azure Static Web App
 * [X] Enable HTTPS and custom domain support
 * [X] Set up GitHub actions
-* [ ] Add tests to the counter function
+* [X] Add tests to the counter function
 
 Additional steps:
 
-* [ ] Migrate out of Azure static web apps
+* [X] Migrate out of Azure static web apps
   * [x] Azure Blob storage
   * [x] HTTPS
   * [x] Custom domain
@@ -28,6 +28,7 @@ Additional steps:
   * [ ] CI/CD Github Actions
     * [X] Static website
     * [X] Counter Function (Python)
+
 Last step:
 
 * [ ] Write a blog post to describe the process
