@@ -28,6 +28,9 @@ jobs:
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
           popd
       
+      - name: 'Run Python tests with Pytest'
+        run: pytest
+      
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
