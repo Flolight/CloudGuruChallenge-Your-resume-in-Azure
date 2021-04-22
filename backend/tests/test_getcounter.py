@@ -8,4 +8,4 @@ class TestGetCounter(unittest.TestCase):
         counter = 1
         resp = getNewCounterValue(counter)
 
-        self.assertEqual(resp, 1)
+        self.assertEqual(resp, 2)
