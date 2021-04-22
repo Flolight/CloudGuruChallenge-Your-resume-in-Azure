@@ -20,6 +20,20 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           
+      - name: Install dependencies
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          popd
+          
+      - name: Test with pytest
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          pip install pytest
+          pytest tests
+          popd
+      
       - name: 'Resolve Project Dependencies Using Pip'
         shell: bash
         run: |
@@ -27,9 +41,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
           popd
-      
-      - name: GitHub Action for pytest
-        uses: cclauss/GitHub-Action-for-pytest@0.5.0
       
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
