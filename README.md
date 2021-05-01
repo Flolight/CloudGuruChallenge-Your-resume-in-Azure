@@ -6,6 +6,8 @@ This repository is hosting the code and documentation of the A Cloud Guru Challe
 
 The idea is to build a resume and host it using Azure services.
 
+For a detailed view of the journey, you should take a look at [my blog article](https://blog.flolight.dev/challenge-my-resume-in-azure)
+
 ## The steps
 
 * [X] Create a GitHub repository
@@ -25,13 +27,13 @@ Additional steps:
   * [x] HTTPS
   * [x] Custom domain
   * [x] Function
-  * [ ] CI/CD Github Actions
+  * [X] CI/CD Github Actions
     * [X] Static website
     * [X] Counter Function (Python)
 
 Last step:
 
-* [ ] Write a blog post to describe the process
+* [X] Write [a blog post to describe the process](https://blog.flolight.dev/challenge-my-resume-in-azure)
 
 ## My journey
 
@@ -66,10 +68,12 @@ I have a decent knowledge of AWS and passed the AZ-900 but I'm not working on a 
 [Tutorial](https://docs.microsoft.com/fr-fr/azure/storage/blobs/storage-blob-static-website)
 
 * create a storage account and run the following:
-* 
-az storage blob service-properties update --account-name floresume2021 --static-website --404-document error.html --index-document index.html
 
-az storage blob upload-batch -s /Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/front -d '$web' --account-name floresume2021
+```bash
+az storage blob service-properties update --account-name myresume --static-website --404-document error.html --index-document index.html
+
+az storage blob upload-batch -s ./front -d '$web' --account-name myresume 
+```
 
 ### Azure CDN
 
@@ -90,7 +94,6 @@ Custom domain https with CDN managed certificates
 ```sh
 az ad sp create-for-rbac --name {myStaticSite} --role contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth
 ```
-az ad sp create-for-rbac --name floresume --role contributor --scopes /subscriptions/b2348720-5caf-4463-899f-1891ed1130c4/resourceGroups/flo-resume --sdk-auth
 
 * Add a secret to Github repository with the json
 
@@ -129,17 +132,3 @@ az deployment group create \
 ```
 
 * Add storage resource
-
-templateFile="/Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/templates/azurestoragedeploy.json"
-az deployment group create \
-  --name addstorage \
-  --resource-group flo-resume \
-  --template-file $templateFile \
-  --parameters storageName=resumeflo2021
-
-templateFile="/Users/flo/repos/CloudGuruChallenge-Your-resume-in-Azure/templates/azurefunctiondeploy.json"
-az deployment group create \
-  --name addfunction \
-  --resource-group flo-resume \
-  --template-file $templateFile \
-  --parameters storageName=resumeflo2021
